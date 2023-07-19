@@ -1,3 +1,18 @@
+/*
+💡 Referencias para o código deste projeto:
+
+➡️ https://www.youtube.com/watch?v=vAUXU0YIWlU
+➡️ https://www.youtube.com/watch?v=t5iumvSNbgM
+➡️ https://www.youtube.com/watch?v=v7q3pEK1EA0
+
+➡️ https://balta.io/artigos/aspnetcore-3-autenticacao-autorizacao-bearer-jwt
+➡️ https://medium.com/@mmoshikoo/jwt-authentication-using-c-54e0c71f21b0
+➡️ https://renatogroffe.medium.com/net-6-asp-net-core-jwt-swagger-implementando-a-utiliza%C3%A7%C3%A3o-de-tokens-5d04cda20fa8
+➡️ https://dev.to/mgpaixao/criando-api-com-jwt-autorizacao-e-autenticacao-modulo-1-20b8
+
+🔹 O objetivo é aprender a utilizar o JWT com .NET 6.0.
+*/
+
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
