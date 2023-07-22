@@ -1,8 +1,20 @@
-using System.Security.Cryptography;
-using JwtWebApiTutorial.DTOs;
-using JwtWebApiTutorial.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
+using System;
+using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
+using System.Security.Claims;
+using System.Security.Cryptography;
+using System.Text;
+using System.Threading.Tasks;
+using JwtWebApiTutorial.DTOs;
+using JwtWebApiTutorial.Models;
+
+// dotnet add package System.IdentityModel.Tokens.Jwt
 
 namespace JwtWebApiTutorial.Controllers;
 
@@ -11,7 +23,13 @@ namespace JwtWebApiTutorial.Controllers;
 public class AuthController : ControllerBase
 {
     public static User user = new User();
+    private readonly IConfiguration _configuration;
 
+    public AuthController(IConfiguration configuration)
+    {
+        _configuration = configuration;
+    }
+    
     [HttpPost("register")]
     public async Task<ActionResult<User>> Register(UserDto request)
     {
@@ -38,7 +56,32 @@ public class AuthController : ControllerBase
             return BadRequest("Wrong password.");
         }
 
-        return Ok("MY CRAZY TOKEN!!");
+        string token = CreateToken(user);
+        return Ok(token);
+    }
+
+    private string CreateToken(User user)
+    {
+        List<Claim> claims = new List<Claim>
+        {
+            new Claim(ClaimTypes.Name, user.Username)
+        };
+
+        // Gera a chave HMAC-SHA512 do tamanho correto
+        using (var hmac = new HMACSHA512())
+        {
+            var key = hmac.Key;
+            var creds = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha512);
+
+            var token = new JwtSecurityToken(
+                claims: claims,
+                expires: DateTime.Now.AddDays(1),
+                signingCredentials: creds);
+
+            var jwt = new JwtSecurityTokenHandler().WriteToken(token);
+
+            return jwt;
+        }
     }
 
     // Metodo para criar um hash da senha
