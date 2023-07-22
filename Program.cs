@@ -11,6 +11,8 @@
 ➡️ https://dev.to/mgpaixao/criando-api-com-jwt-autorizacao-e-autenticacao-modulo-1-20b8
 
 🔹 O objetivo é aprender a utilizar o JWT com .NET 6.0.
+
+🌐 https://jwt.io/
 */
 
 using Microsoft.OpenApi.Models;
