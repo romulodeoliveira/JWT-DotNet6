@@ -4,6 +4,7 @@
 ➡️ https://www.youtube.com/watch?v=vAUXU0YIWlU
 ➡️ https://www.youtube.com/watch?v=t5iumvSNbgM
 ➡️ https://www.youtube.com/watch?v=v7q3pEK1EA0
+➡️ https://www.youtube.com/watch?v=TDY_DtTEkes
 
 ➡️ https://balta.io/artigos/aspnetcore-3-autenticacao-autorizacao-bearer-jwt
 ➡️ https://medium.com/@mmoshikoo/jwt-authentication-using-c-54e0c71f21b0
